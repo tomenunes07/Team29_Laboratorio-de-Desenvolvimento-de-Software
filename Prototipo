@@ -1,0 +1,75 @@
+// VIEW
+
+public void MostraMenu()
+{
+    // Mostra menu com as diferentes opções disponíveis
+}
+
+public void MostraRankedRelatorio()
+{
+    // Apresenta dados dos posts mais bem sucedidos
+}
+
+public void MostraRecentRelatorio()
+{
+    // Apresenta dados dos posts mais recentes
+}
+
+public void MostraErro()
+{
+    // Apresenta mensagem de erro
+}
+
+// CONTROLLER
+
+public void MostraDados(List<post> Report)
+{
+    // Apresenta os dados solicitados no view
+}
+
+public List<post> GetRankedRelatorio()
+{
+    // Pede ao model uma lista de informações de todos os posts,
+    // transforma essa lista numa lista de posts
+    // ordena-os, segundo um critério definido
+    // e apresenta-os com a função MostraDados(List<post> Report)
+    postData = model.GetPostData();
+    RankedRelatorio = OrdenaDados(TransformaDados(postData));
+    MostraDados(RankedRelatorio);
+}
+
+public List<post> GetRelatorioRecente()
+{
+    // Pede ao model uma lista de informações dos posts mais recentes
+    // segundo um critério de datas definido
+    // e apresenta-os com a função MostraDados(List<post Report>)
+    MostraDados(TransformaDados(model.GetLastPostData()));
+}
+
+public List<post> TransformaDados(List<postData> Dados)
+{
+    // Transforma a lista de objetos <postData> do model
+    // numa lista de <post> para evitar dependencias entre
+    // view e model
+}
+
+public List<post> OrdenaDados(List <post> Dados)
+{
+    // Ordena os dados do post
+}
+
+
+// MODEL
+
+public List<postData> GetPostData()
+{
+    // Invoca a API do facebook e pede dados de posts
+    // Devolve uma lista de dados de posts
+}
+
+public List<postData> GetLastPostData()
+{
+    // Invoca a API do facebook e pede dados de posts
+    // Devolve uma lista de dados dos ultimos posts
+
+}
