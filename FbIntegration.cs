@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using PostDataClass;
 
-namespace LabDev
+namespace FacebookIntegration
 {
     // Esta classe faz parte do componente MODEL
     // É responsável por ir buscar dados
