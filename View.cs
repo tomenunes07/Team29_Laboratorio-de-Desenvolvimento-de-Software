@@ -4,7 +4,7 @@ internal class View
 {
     public delegate void MenuChoiceEventHandler(string choice);
 
-    // Evento que será acionado quando o usuário fizer uma escolha no menu
+    // Evento que será acionado quando o utilizador fizer uma escolha no menu
     public event MenuChoiceEventHandler MenuChoiceMade;
 
     public void ShowMainMenu()
@@ -17,7 +17,7 @@ internal class View
         Console.WriteLine("Digite a opção desejada: ");
 
         string escolha = Console.ReadLine();
-        // Acionar o evento MenuChoiceMade com a escolha do usuário
+        // Acionar o evento MenuChoiceMade com a escolha do utilizador
         MenuChoiceMade?.Invoke(escolha);
     }
 
