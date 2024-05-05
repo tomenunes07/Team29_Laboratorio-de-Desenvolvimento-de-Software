@@ -5,7 +5,7 @@ internal class View
 {
     public delegate void MenuChoiceEventHandler(string choice);
 
-    // Evento que será acionado quando o usuário fizer uma escolha no menu
+    // Evento que será acionado quando o utilizador fizer uma escolha no menu
     public event MenuChoiceEventHandler MenuChoiceMade;
 
     public void ShowMainMenu()
