@@ -43,7 +43,10 @@ internal class Controller
                 Environment.Exit(0);
                 break;
             default:
-                throw new ArgumentException("Opção inválida. Tente novamente.");
+               Console.WriteLine("Opção inválida. Tente novamente.");
+               Console.WriteLine("Prima qualquer tecla para voltar ao menu...");
+               Console.ReadKey();
+               break;
         }
 
         view.ShowMainMenu();
