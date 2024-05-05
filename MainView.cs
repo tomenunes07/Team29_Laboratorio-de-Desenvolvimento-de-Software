@@ -1,5 +1,7 @@
 using System;
 
+namespace LabDev
+
 class MainView()
 {
     static void Main(string[] args) { 
