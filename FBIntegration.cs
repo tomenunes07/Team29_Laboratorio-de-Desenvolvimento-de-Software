@@ -19,7 +19,6 @@ namespace LabDev.Models
         public async Task<List<PostData>> GetPostsAsync()
         {
             List<PostData> postDataList = new List<PostData>();
-
             try
             {
                 string url = _appConfig.GetServiceUrlWithId();
@@ -38,7 +37,7 @@ namespace LabDev.Models
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao chamar o serviço: {ex.Message}");
-            }
+            };
 
             return postDataList;
         }
