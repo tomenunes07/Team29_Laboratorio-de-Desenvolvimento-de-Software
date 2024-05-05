@@ -1,20 +1,28 @@
+using PostInfoClass;
 using System;
 internal class Controller
 {
     private Model model;
     private View view;
+    private List<PostInfo> postInfoList;
 
     public Controller()
     {
         this.model = new Model();
         this.view = new View();
+        this.postInfoList = new List<PostInfo>();
 
         // Inscrever-se no evento MenuChoiceMade da View
         this.view.MenuChoiceMade += HandleMenuChoice;
     }
-
-    public void StartController()
+    private async Task InitializeAsync()
     {
+        postInfoList = await model.GetPostsAsync();
+    }
+
+    public async Task StartController()
+    {
+        await InitializeAsync();
         view.ShowMainMenu();
     }
 
@@ -23,34 +31,42 @@ internal class Controller
         switch (choice)
         {
             case "1":
-                // Chamar a função FuncaoOpcao1() no Controller
-                FuncaoOpcao1();
+                PostsMaisBemSucedidos();
                 break;
             case "2":
-                // Lógica para a opção 2...
+                PostsMenosBemSucedidos();
                 break;
             case "3":
-                // Lógica para a opção 3...
+                PostsComMaisReacoes();
+                break;
+            case "4":
+                Environment.Exit(0);
                 break;
             default:
                 throw new ArgumentException("Opção inválida. Tente novamente.");
         }
-    }
 
-    private void FuncaoOpcao1()
-    {
-        // Implementação da funcionalidade da opção 1 no Controller...
-    }
-
-    private void ShowMainMenu()
-    {
-        // Mostrar o menu principal ao usuário
         view.ShowMainMenu();
     }
+
+    private void PostsMaisBemSucedidos()
+    {
+        var postsOrdenados = postInfoList.OrderByDescending(p => p.ViewCount).ToList();
+        var top10Posts = postsOrdenados.Take(10).ToList();
+        view.ListarPostsMaisBemSucedidos(top10Posts);
+    }
+
+    private void PostsMenosBemSucedidos()
+    {
+        var postsOrdenados = postInfoList.OrderBy(p => p.ViewCount).ToList();
+        var top10Posts = postsOrdenados.Take(10).ToList();
+        view.ListarPostsMenosBemSucedidos(top10Posts);
+    }
+
+    private void PostsComMaisReacoes()
+    {
+        var postsOrdenados = postInfoList.OrderByDescending(p => p.ReactionCount).ToList();
+        var top10Posts = postsOrdenados.Take(10).ToList();
+        view.ListarPostsComMaisReacoes(top10Posts);
+    }
 }
-
-
-/*
- *          FbIntegration manager = new FbIntegration(appConfig); //passar para o model
-            List<PostData> posts = await manager.GetPostsAsync(); //passar para o model
-*/

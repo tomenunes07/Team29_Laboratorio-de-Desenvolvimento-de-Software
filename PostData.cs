@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
-
-//Esta classe pertence ao componente Model
+﻿//Esta classe pertence ao componente Model
 namespace PostDataClass
 {
     public class PostData

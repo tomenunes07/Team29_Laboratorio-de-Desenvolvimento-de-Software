@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using PostDataClass;
+using PostInfoClass;
 using FacebookIntegration;
 
 public class Model
@@ -15,10 +13,20 @@ public class Model
         _fbIntegration = new FbIntegration(appConfig);
     }
 
-    public async Task<List<PostData>> GetPostsAsync()
+    public async Task<List<PostInfo>> GetPostsAsync()
     //chama o método GetPostsAsync() da classe FbIntegration e retorna o resultado diretamente.
     {
-        return await _fbIntegration.GetPostsAsync();
-    }
+        List<PostData> postDataList = await _fbIntegration.GetPostsAsync();
 
+        List<PostInfo> postInfoList = postDataList.Select(postData =>
+            new PostInfo(
+                postData.Description,
+                postData.ViewCount,
+                postData.LikeCount,
+                postData.ReactionCount,
+                postData.CreationDate
+            )).ToList();
+
+        return postInfoList;
+    }
 }

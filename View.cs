@@ -1,4 +1,5 @@
-﻿using PostDataClass;
+﻿using System;
+using PostInfoClass;
 
 internal class View
 {
@@ -9,6 +10,8 @@ internal class View
 
     public void ShowMainMenu()
     {
+        Console.Clear();
+
         Console.WriteLine("Escolha uma Opção:");
         Console.WriteLine("1. Mostrar Post´s Mais Bem Sucedidos com Base na Quantidade de Views");
         Console.WriteLine("2. Mostrar Post´s Menos Bem Sucessidos com Base na Quantidade de Views");
@@ -17,6 +20,7 @@ internal class View
         Console.WriteLine("Digite a opção desejada: ");
 
         string escolha = Console.ReadLine();
+        Console.Clear();
         // Acionar o evento MenuChoiceMade com a escolha do usuário
         MenuChoiceMade?.Invoke(escolha);
     }
@@ -25,36 +29,39 @@ internal class View
     public void ListarPostsMaisBemSucedidos(List<PostInfo> posts)
     {
         Console.WriteLine("Listando os posts mais bem sucedidos por visualizações:");
-        // var postsOrdenados = posts.OrderByDescending(p => p.ViewCount); // Ordena os posts por número de visualizações
+        Console.WriteLine();
         DisplayData(posts);
     }
 
     public void ListarPostsMenosBemSucedidos(List<PostInfo> posts)
     {
         Console.WriteLine("Listando os posts menos bem sucedidos por visualizações:");
-        //var postsOrdenados = posts.OrderBy(p => p.ViewCount); // Ordena os posts por número de visualizações em ordem crescente
         DisplayData(posts);
     }
 
     public void ListarPostsComMaisReacoes(List<PostInfo> posts)
     {
         Console.WriteLine("Listando os posts com mais reações:");
-        //var postsOrdenados = posts.OrderByDescending(p => p.ReactionCount); // Ordena os posts por número de reações em ordem decrescente
         DisplayData(posts);
     }
 
     public void DisplayData(List<PostInfo> posts)
     {
+        int i = 1;
         foreach (var post in posts)
         {
-            Console.WriteLine($"ID: {post.Id}");
-            Console.WriteLine($"AppId: {post.AppId}");
+            Console.WriteLine($"# {i}");
             Console.WriteLine($"Descrição: {post.Description}");
             Console.WriteLine($"Visualizações: {post.ViewCount}");
             Console.WriteLine($"Likes: {post.LikeCount}");
             Console.WriteLine($"Reações: {post.ReactionCount}");
             Console.WriteLine($"Data Criação: {post.CreationDate}");
+            Console.WriteLine("---------------------------------------");
             Console.WriteLine();
+            i++;
         }
+        Console.WriteLine();
+        Console.WriteLine("Prima qualquer tecla para voltar ao menu...");
+        Console.ReadKey();
     }
 }
