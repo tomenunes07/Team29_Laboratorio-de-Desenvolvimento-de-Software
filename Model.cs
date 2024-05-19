@@ -4,13 +4,11 @@ using FacebookIntegration;
 
 public class Model
 {
-    private readonly FbIntegration _fbIntegration;
+    private readonly IFbIntegration _fbIntegration;
     // Uma instância sda classe FbIntegration que será usada para chamar seus métodos.
-    public Model()
-    //Um construtor que aceita uma instância de FbIntegration como argumento e a atribui à variável _fbIntegration.
+    public Model(IFbIntegration fbIntegration)
     {
-        AppConfig appConfig = new AppConfig();
-        _fbIntegration = new FbIntegration(appConfig);
+        _fbIntegration = fbIntegration;
     }
 
     public async Task<List<PostInfo>> GetPostsAsync()

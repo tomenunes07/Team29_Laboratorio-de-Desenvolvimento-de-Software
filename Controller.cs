@@ -6,10 +6,10 @@ internal class Controller
     private View view;
     private List<PostInfo> postInfoList;
 
-    public Controller()
+    public Controller(Model model, View view, List<PostInfo> postInfoList)
     {
-        this.model = new Model();
-        this.view = new View(); 
+        this.model = model;
+        this.view = view;
         this.postInfoList = new List<PostInfo>();
 
         // Inscrever-se no evento MenuChoiceMade da View

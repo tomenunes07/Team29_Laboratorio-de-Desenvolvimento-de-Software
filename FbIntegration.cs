@@ -7,9 +7,7 @@ using PostDataClass;
 
 namespace FacebookIntegration
 {
-    // Esta classe faz parte do componente MODEL
-    // É responsável por ir buscar dados
-    public class FbIntegration
+    public class FbIntegration : IFbIntegration
     {
         private readonly HttpClient _httpClient;
         private readonly AppConfig _appConfig;
