@@ -1,5 +1,5 @@
 using PostInfoClass;
-using System;
+
 internal class Controller
 {
     private Model model;
@@ -9,7 +9,7 @@ internal class Controller
     public Controller()
     {
         this.model = new Model();
-        this.view = new View();
+        this.view = new View(); 
         this.postInfoList = new List<PostInfo>();
 
         // Inscrever-se no evento MenuChoiceMade da View

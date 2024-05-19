@@ -5,7 +5,7 @@ using FacebookIntegration;
 public class Model
 {
     private readonly FbIntegration _fbIntegration;
-    // Uma instância da classe FbIntegration que será usada para chamar seus métodos.
+    // Uma instância sda classe FbIntegration que será usada para chamar seus métodos.
     public Model()
     //Um construtor que aceita uma instância de FbIntegration como argumento e a atribui à variável _fbIntegration.
     {
