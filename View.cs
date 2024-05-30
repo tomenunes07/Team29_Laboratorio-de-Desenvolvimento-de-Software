@@ -14,7 +14,7 @@ internal class View
 
         Console.WriteLine("Escolha uma Opção:");
         Console.WriteLine("1. Mostrar Post´s Mais Bem Sucedidos com Base na Quantidade de Views");
-        Console.WriteLine("2. Mostrar Post´s Menos Bem Sucessidos com Base na Quantidade de Views");
+        Console.WriteLine("2. Mostrar Post´s Menos Bem Sucedidos com Base na Quantidade de Views");
         Console.WriteLine("3. Mostrar Post´s com Mais Reações");
         Console.WriteLine("4. Sair");
         Console.WriteLine("Digite a opção desejada: ");
