@@ -1,6 +1,11 @@
 ﻿using PostDataClass;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-public interface IFbIntegration
+namespace FacebookIntegration
 {
-    Task<List<PostData>> GetPostsAsync();
+    public interface IFbIntegration
+    {
+        Task<List<PostData>> GetPostsAsync();
+    }
 }

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PostDataClass;
+using FacebookIntegration; // Adicione esta linha
 
 namespace FacebookIntegration
 {
@@ -11,11 +12,13 @@ namespace FacebookIntegration
     {
         private readonly HttpClient _httpClient;
         private readonly AppConfig _appConfig;
+        private readonly ModelLog _modelLog;
 
         public FbIntegration(AppConfig appConfig)
         {
             _httpClient = new HttpClient();
             _appConfig = appConfig;
+            _modelLog = new ModelLog();
         }
 
         public async Task<List<PostData>> GetPostsAsync()
@@ -34,12 +37,12 @@ namespace FacebookIntegration
                 }
                 else
                 {
-                    Console.WriteLine($"Erro ao chamar o serviço: {response.StatusCode}");
+                    _modelLog?.ErrorLog($"Erro ao chamar o serviço: {response.StatusCode}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao chamar o serviço: {ex.Message}");
+                _modelLog?.ErrorLog($"Erro ao chamar o serviço: {ex.Message}");
             }
 
             return postDataList;

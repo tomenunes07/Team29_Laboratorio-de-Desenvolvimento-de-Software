@@ -7,11 +7,11 @@ internal class Controller
     private List<PostInfo> postInfoList;
     private ModelLog log;
 
-    public Controller()
+    public Controller(Model model, View view, List<PostInfo> postInfoList)
     {
-        this.model = new Model();
-        this.view = new View();
-        this.postInfoList = new List<PostInfo>();
+        this.model = model;
+        this.view = view;
+        this.postInfoList = postInfoList;
 
         // Inscrever-se no evento MenuChoiceMade da View
         this.view.MenuChoiceMade += HandleMenuChoice;
