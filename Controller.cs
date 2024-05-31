@@ -1,15 +1,16 @@
 using PostInfoClass;
-
+using System;
 internal class Controller
 {
     private Model model;
     private View view;
     private List<PostInfo> postInfoList;
+    private ModelLog log;
 
-    public Controller(Model model, View view, List<PostInfo> postInfoList)
+    public Controller()
     {
-        this.model = model;
-        this.view = view;
+        this.model = new Model();
+        this.view = new View();
         this.postInfoList = new List<PostInfo>();
 
         // Inscrever-se no evento MenuChoiceMade da View
@@ -22,34 +23,50 @@ internal class Controller
 
     public async Task StartController()
     {
-        await InitializeAsync();
-        view.ShowMainMenu();
+        try
+        {
+            await InitializeAsync();
+            view.ShowMainMenu();
+        }
+        catch (Exception ex)
+        {
+            HandleError(ex);
+        }
     }
 
     private void HandleMenuChoice(string choice)
     {
-        switch (choice)
+        try
         {
-            case "1":
-                PostsMaisBemSucedidos();
-                break;
-            case "2":
-                PostsMenosBemSucedidos();
-                break;
-            case "3":
-                PostsComMaisReacoes();
-                break;
-            case "4":
-                Environment.Exit(0);
-                break;
-            default:
-               Console.WriteLine("Opção inválida. Tente novamente.");
-               Console.WriteLine("Prima qualquer tecla para voltar ao menu...");
-               Console.ReadKey();
-               break;
+            switch (choice)
+            {
+                case "1":
+                    PostsMaisBemSucedidos();
+                    break;
+                case "2":
+                    PostsMenosBemSucedidos();
+                    break;
+                case "3":
+                    PostsComMaisReacoes();
+                    break;
+                case "4":
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    Console.WriteLine("Prima qualquer tecla para voltar ao menu...");
+                    Console.ReadKey();
+                    break;
+            }
         }
-
-        view.ShowMainMenu();
+        catch (Exception ex)
+        {
+            HandleError(ex);
+        }
+        finally
+        {
+            view.ShowMainMenu();
+        }
     }
 
     private void PostsMaisBemSucedidos()
@@ -71,5 +88,12 @@ internal class Controller
         var postsOrdenados = postInfoList.OrderByDescending(p => p.ReactionCount).ToList();
         var top10Posts = postsOrdenados.Take(10).ToList();
         view.ListarPostsComMaisReacoes(top10Posts);
+    }
+
+    private void HandleError(Exception ex)
+    {
+        log.ErrorLog(ex.Message);
+        Console.WriteLine("Ocorreu um erro durante a execução da aplicação. Por favor, entre em contato com o suporte.");
+        Console.WriteLine("Detalhes do erro: " + ex.Message);
     }
 }

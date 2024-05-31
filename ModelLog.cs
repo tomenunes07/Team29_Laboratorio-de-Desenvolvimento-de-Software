@@ -1,36 +1,31 @@
-﻿using Microsoft.VisualBasic.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-internal class ModelLog
+﻿internal class ModelLog
 {
     public delegate void NotificacaoLogAlterado();
     public event NotificacaoLogAlterado NotificarLogAlterado;
 
     private string log;
 
-    public ModelLog() 
+    public ModelLog()
     {
         log = "Model error log";
     }
 
     public void ErrorLog(string Error)
     {
-        if(Error != null) { 
+        if (Error != null)
+        {
             log = Error;
-            NotificarLogAlterado();
+            NotificarLogAlterado?.Invoke();
         }
         else
         {
             log = "Algum erro aconteceu na chamada da API do facebook";
+            NotificarLogAlterado?.Invoke();
         }
     }
 
     public string GetLog()
-    { 
-        return log; 
+    {
+        return log;
     }
 }
